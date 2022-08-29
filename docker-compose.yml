@@ -69,7 +69,6 @@ services:
       context: .
       dockerfile: ./.docker/nginx/Dockerfile
     volumes:
-      - /home/zest/daybydaycrm/nginx/conf/nginx-local.conf:/etc/nginx/nginx.conf
       - /home/zest/daybydaycrm/nginx:/var/www/html
     ports:
       - 13253:80
