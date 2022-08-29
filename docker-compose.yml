@@ -13,7 +13,7 @@ services:
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
-      - APP_KEY=i53weLzCSdunQzNc2SXR2AE9XJVDuNaq
+      - APP_KEY=SWzaWZyHCh72Tpu1VjDQ86ao
       - DB_HOST=db
       - DB_DATABASE=daybyday
       - DB_USERNAME=root
@@ -27,7 +27,7 @@ services:
         - elasticsearch2
         - redis
     ports:
-      - 9000:9000
+      - 13251:9000
     networks:
       - service_net
 
@@ -39,7 +39,7 @@ services:
       CHROMEDRIVER_WHITELISTED_IPS: ""
       CHROMEDRIVER_PORT: "9515"
     ports:
-      - 9515:9515
+      - 13252:9515
     cap_add:
       - "SYS_ADMIN"
     links:
@@ -72,7 +72,7 @@ services:
       - .docker/nginx/nginx-local.conf:/etc/nginx/nginx.conf
       - .:/var/www/html
     ports:
-      - 80:80
+      - 13253:80
     depends_on:
       - php
     links:
@@ -94,7 +94,7 @@ services:
     volumes:
       - esdata1:/usr/share/elasticsearch/data
     ports:
-      - 9200:9200
+      - 13254:9200
     networks:
       - service_net
 
@@ -125,7 +125,7 @@ services:
     volumes:
       - redisdata:/bitnami/redis/data
     ports:
-      - 6379:6379
+      - 13255:6379
     networks:
       - service_net
 
