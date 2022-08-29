@@ -105,15 +105,12 @@ services:
       - cluster.name=docker-cluster
       - bootstrap.memory_lock=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - "discovery.zen.ping.unicast.hosts=elasticsearch"
-      - "ELASTICSEARCH_MINIMUM_MASTER_NODES=2"
-      - "discovery.zen.minimum_master_nodes=2"
     ulimits:
       memlock:
         soft: -1
         hard: -1
     volumes:
-        - /home/zest/daybydaycrm/elasticsearch:/usr/share/elasticsearch/data
+        - esdata2:/usr/share/elasticsearch/data
     networks:
       - service_net
 
