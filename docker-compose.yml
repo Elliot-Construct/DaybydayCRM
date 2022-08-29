@@ -8,8 +8,7 @@ services:
       dockerfile: .docker/php/Dockerfile
     working_dir: /var/www/html
     volumes:
-      - /home/zest/daybydaycrm/html:/var/www/html
-      - /home/zest/daybydaycrm/php/php.ini:/usr/local/etc/php/php.ini
+      - php1:/var/www/html
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
@@ -51,7 +50,6 @@ services:
     image: mysql:5.7
     volumes:
       - dbdata:/var/lib/mysql
-      - /home/zest/daybydaycrm/database:/docker-entrypoint-initdb.d
     ports:
       - 13256:3306
     restart: always
@@ -69,7 +67,7 @@ services:
       context: .
       dockerfile: ./.docker/nginx/Dockerfile
     volumes:
-      - /home/zest/daybydaycrm/nginx:/var/www/html
+      - nginx:/var/www/html
     ports:
       - 13253:80
     depends_on:
@@ -119,7 +117,11 @@ services:
       - service_net
 
 volumes:
-  esdata1:
+  nginx:
+    driver: local
+  php1:
+    driver: local
+   esdata1:
     driver: local
   esdata2:
     driver: local
