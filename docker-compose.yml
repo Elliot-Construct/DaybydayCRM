@@ -85,7 +85,7 @@ services:
     container_name: elasticsearchMain
     environment:
       - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
+      - bootstrap.memory_lock=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:
       memlock:
@@ -103,7 +103,7 @@ services:
     container_name: elasticsearchSecond
     environment:
       - cluster.name=docker-cluster
-      - bootstrap.memory_lock=true
+      - bootstrap.memory_lock=false
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - "discovery.zen.ping.unicast.hosts=elasticsearch"
       - "ELASTICSEARCH_MINIMUM_MASTER_NODES=2"
