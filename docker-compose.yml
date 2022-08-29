@@ -8,8 +8,8 @@ services:
       dockerfile: .docker/php/Dockerfile
     working_dir: /var/www/html
     volumes:
-      - .:/var/www/html
-      - .docker/php/custom.ini:/usr/local/etc/php/php.ini
+      - /home/zest/daybydaycrm/html:/var/www/html
+      - /home/zest/daybydaycrm/php/php.ini:/usr/local/etc/php/php.ini
     environment:
       - APP_ENV=local
       - APP_DEBUG=true
@@ -51,7 +51,7 @@ services:
     image: mysql:5.7
     volumes:
       - dbdata:/var/lib/mysql
-      - .docker/db/db/:/docker-entrypoint-initdb.d
+      - /home/zest/daybydaycrm/database:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
     restart: always
@@ -69,8 +69,8 @@ services:
       context: .
       dockerfile: ./.docker/nginx/Dockerfile
     volumes:
-      - .docker/nginx/nginx-local.conf:/etc/nginx/nginx.conf
-      - .:/var/www/html
+      - /home/zest/daybydaycrm/nginx/conf/nginx-local.conf:/etc/nginx/nginx.conf
+      - /home/zest/daybydaycrm/nginx:/var/www/html
     ports:
       - 13253:80
     depends_on:
@@ -113,7 +113,7 @@ services:
         soft: -1
         hard: -1
     volumes:
-        - esdata2:/usr/share/elasticsearch/data
+        - /home/zest/daybydaycrm/elasticsearch:/usr/share/elasticsearch/data
     networks:
       - service_net
 
