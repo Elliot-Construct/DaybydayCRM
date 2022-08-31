@@ -19,8 +19,6 @@ services:
       - DB_PASSWORD=root
     depends_on:
       - db
-    env_file:
-        - docker-compose.env
     links:
         - elasticsearch
         - elasticsearch2
